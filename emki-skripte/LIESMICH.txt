@@ -1,0 +1,6 @@
+EMKI Skripte – Stand 06.10.2026
+
+A_Terminbuchung   → eigenes Projekt unter script.new (Anleitung A in der Startklar-Checkliste)
+B_Rueckrufliste   → in der Rückrufliste unter Erweiterungen > Apps Script (Anleitung B)
+
+Nach der Einrichtung bitte die Web-App-Adressen an Claude schicken.

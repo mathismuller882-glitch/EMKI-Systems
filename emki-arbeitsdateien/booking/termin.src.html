@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Kennenlerngespräch buchen – EMKI Systems</title>
+<meta name="description" content="30 Minuten, kostenlos und unverbindlich: Termin für ein Kennenlerngespräch zum KI-Telefonassistenten für Physiotherapiepraxen auswählen.">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  :root {
+    --paper:#f5f6f8; --surface:#ffffff; --ink:#1b2330; --graphite:#586172; --muted:#8a93a3; --rule:#d8dde5; --rule-soft:#e8ebf0;
+    --kuli:#2a46b8; --kuli-hover:#1d3290; --kuli-soft:#e8ecfb; --on-kuli:#ffffff;
+    --note:#fff8d9; --note-rule:#e9dfa8; --note-print:#7b7451;
+    --ok:#0f7b4f; --ok-soft:#e5f3eb; --err:#a2292a; --err-soft:#fbeaea;
+    --shadow:0 1px 2px rgba(20,27,43,.04), 0 12px 32px -12px rgba(20,27,43,.14);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --paper:#12161d; --surface:#1a1f28; --ink:#e7eaf0; --graphite:#a3acbb; --muted:#7d8697; --rule:#2c3341; --rule-soft:#242a35;
+    --kuli:#93a6ff; --kuli-hover:#b3c1ff; --kuli-soft:#1f2747; --on-kuli:#10142a;
+    --note:#2a281c; --note-rule:#474230; --note-print:#b9b08a; --ok:#6fd3a5; --ok-soft:#173426; --err:#ff9c9c; --err-soft:#3a1f22;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 12px 32px -12px rgba(0,0,0,.6);
+  } }
+  :root[data-theme="dark"] {
+    --paper:#12161d; --surface:#1a1f28; --ink:#e7eaf0; --graphite:#a3acbb; --muted:#7d8697; --rule:#2c3341; --rule-soft:#242a35;
+    --kuli:#93a6ff; --kuli-hover:#b3c1ff; --kuli-soft:#1f2747; --on-kuli:#10142a;
+    --note:#2a281c; --note-rule:#474230; --note-print:#b9b08a; --ok:#6fd3a5; --ok-soft:#173426; --err:#ff9c9c; --err-soft:#3a1f22;
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; font-size:16px; line-height:1.55; }
+  a { color:var(--kuli); }
+  button, input, select, textarea { font:inherit; color:inherit; }
+  :focus-visible { outline:3px solid var(--kuli); outline-offset:2px; border-radius:6px; }
+  .wrap { max-width:1120px; margin:0 auto; padding:0 16px; }
+  @media (min-width:760px) { .wrap { padding:0 32px; } }
+
+  header { padding:20px 0; }
+  header .wrap { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .logo { display:inline-flex; }
+  .logo .d { display:none; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .logo .l { display:none; } :root:not([data-theme="light"]) .logo .d { display:inline; } }
+  .back { font-size:15px; color:var(--graphite); text-decoration:none; }
+  .back:hover { color:var(--kuli); }
+
+  [hidden] { display:none !important; }
+  .layout { display:grid; gap:28px; padding-top:8px; padding-bottom:64px; }
+  @media (min-width:960px) { .layout { grid-template-columns:minmax(0,380px) minmax(0,1fr); gap:56px; padding-top:28px; align-items:start; } }
+  @media (max-width:520px) { .widget { margin:0 -8px; border-radius:16px; } .steps { padding:0 4px; } .steps li { padding:14px 8px; font-size:13px; gap:6px; } }
+
+  /* Info-Spalte */
+  .eyebrow { margin:0 0 10px; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--kuli); }
+  h1 { font-family:var(--serif); font-weight:600; font-size:34px; line-height:1.12; margin:0 0 14px; letter-spacing:-.01em; }
+  @media (min-width:960px) { h1 { font-size:42px; } }
+  .lead { font-size:17px; color:var(--graphite); margin:0 0 22px; }
+  .meta { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 26px; padding:0; list-style:none; }
+  .meta li { display:inline-flex; align-items:center; gap:7px; font-size:14px; font-weight:600; background:var(--surface); border:1px solid var(--rule); border-radius:999px; padding:6px 12px; }
+  .meta svg { width:16px; height:16px; color:var(--kuli); flex:none; }
+  .person { display:flex; gap:14px; align-items:flex-start; padding:18px 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); margin:0 0 20px; }
+  .avatar { flex:none; width:52px; height:52px; border-radius:50%; background:var(--kuli-soft); color:var(--kuli); display:grid; place-items:center; font-family:var(--serif); font-weight:700; font-size:19px; }
+  .person b { display:block; font-size:16px; }
+  .person p { margin:2px 0 0; color:var(--graphite); font-size:15px; }
+  .trust { list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+  .trust li { display:flex; gap:10px; font-size:15px; }
+  .trust svg { flex:none; width:20px; height:20px; color:var(--ok); margin-top:1px; }
+  @media (max-width:959px) { .trust, .person { display:none; } .lead { margin-bottom:16px; } .meta { margin-bottom:6px; } }
+
+  /* Widget */
+  .widget { background:var(--surface); border:1px solid var(--rule); border-radius:18px; box-shadow:var(--shadow); overflow:hidden; }
+  .steps { display:flex; gap:0; border-bottom:1px solid var(--rule-soft); padding:0 8px; margin:0; list-style:none; overflow-x:auto; }
+  .steps li { flex:1; min-width:max-content; display:flex; align-items:center; gap:8px; padding:16px 12px; font-size:14px; font-weight:600; color:var(--muted); border-bottom:2px solid transparent; margin-bottom:-1px; }
+  .steps li span { width:22px; height:22px; border-radius:50%; display:grid; place-items:center; font-size:12px; background:var(--rule-soft); color:var(--graphite); }
+  .steps li.aktiv { color:var(--ink); border-bottom-color:var(--kuli); }
+  .steps li.aktiv span { background:var(--kuli); color:var(--on-kuli); }
+  .steps li.fertig span { background:var(--kuli-soft); color:var(--kuli); }
+  .panel { padding:24px 20px 26px; }
+  @media (min-width:760px) { .panel { padding:30px 34px 32px; } }
+  .panel[hidden] { display:none; }
+  h2 { font-family:var(--serif); font-weight:600; font-size:24px; line-height:1.2; margin:0 0 6px; }
+  .sub { margin:0 0 20px; color:var(--graphite); font-size:15px; }
+
+  .arten { display:grid; gap:12px; }
+  @media (min-width:640px) { .arten { grid-template-columns:repeat(3,1fr); } }
+  .art { text-align:left; background:var(--surface); border:1.5px solid var(--rule); border-radius:14px; padding:18px 16px; cursor:pointer; display:flex; flex-direction:column; gap:6px; transition:border-color .15s, box-shadow .15s, transform .15s; }
+  .art:hover { border-color:var(--kuli); box-shadow:0 6px 18px -10px rgba(42,70,184,.5); transform:translateY(-1px); }
+  .art[aria-pressed="true"] { border-color:var(--kuli); background:var(--kuli-soft); }
+  .art .ic { width:38px; height:38px; border-radius:10px; background:var(--kuli-soft); color:var(--kuli); display:grid; place-items:center; margin-bottom:4px; }
+  .art[aria-pressed="true"] .ic { background:var(--surface); }
+  .art .ic svg { width:20px; height:20px; }
+  .art b { font-size:16px; }
+  .art small { color:var(--graphite); font-size:14px; line-height:1.45; }
+
+  .gewaehlt { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; background:var(--paper); border-radius:12px; padding:10px 14px; margin:0 0 18px; font-size:14px; }
+  .gewaehlt b { font-weight:600; }
+  .link { background:none; border:0; padding:0; color:var(--kuli); font-weight:600; cursor:pointer; text-decoration:none; font-size:14px; }
+  .link:hover { text-decoration:underline; }
+
+  .tage-kopf { display:flex; align-items:center; justify-content:space-between; margin:0 0 10px; }
+  .tage-kopf strong { font-size:15px; }
+  .pfeile { display:flex; gap:6px; }
+  .pfeil { width:34px; height:34px; border-radius:50%; border:1px solid var(--rule); background:var(--surface); cursor:pointer; display:grid; place-items:center; color:var(--ink); }
+  .pfeil:disabled { opacity:.35; cursor:default; }
+  .tage { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin:0 0 22px; }
+  .tag { border:1.5px solid var(--rule); background:var(--surface); border-radius:12px; padding:10px 4px; cursor:pointer; text-align:center; line-height:1.2; transition:border-color .15s; }
+  .tag:hover { border-color:var(--kuli); }
+  .tag .wt { display:block; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--graphite); }
+  .tag .nr { display:block; font-family:var(--serif); font-size:24px; font-weight:700; margin:3px 0 1px; }
+  .tag .mo { display:block; font-size:12px; color:var(--graphite); }
+  .tag[aria-pressed="true"] { background:var(--kuli); border-color:var(--kuli); color:var(--on-kuli); }
+  .tag[aria-pressed="true"] .wt, .tag[aria-pressed="true"] .mo { color:var(--on-kuli); opacity:.85; }
+  .zeiten-titel { font-size:15px; font-weight:600; margin:0 0 10px; }
+  .zeiten { display:grid; grid-template-columns:repeat(auto-fill,minmax(88px,1fr)); gap:8px; }
+  .zeit { border:1.5px solid var(--rule); background:var(--surface); border-radius:10px; padding:11px 6px; font-weight:600; font-size:15px; cursor:pointer; font-variant-numeric:tabular-nums; transition:border-color .15s, background .15s; }
+  .zeit:hover { border-color:var(--kuli); color:var(--kuli); }
+  .zeit[aria-pressed="true"] { background:var(--kuli); border-color:var(--kuli); color:var(--on-kuli); }
+  .tz { margin:16px 0 0; font-size:13px; color:var(--muted); }
+
+  .skel { background:linear-gradient(90deg,var(--rule-soft) 0%,var(--paper) 50%,var(--rule-soft) 100%); background-size:200% 100%; animation:sk 1.3s ease-in-out infinite; border-radius:12px; }
+  @keyframes sk { from { background-position:200% 0; } to { background-position:-200% 0; } }
+  @media (prefers-reduced-motion: reduce) { .skel { animation:none; } .art, .art:hover { transform:none; transition:none; } }
+
+  form { display:grid; gap:14px; }
+  @media (min-width:640px) { .zwei { display:grid; grid-template-columns:1fr 1fr; gap:14px; } .zwei.name-zeile { grid-template-columns:150px 1fr; } }
+  .feld { display:flex; flex-direction:column; gap:6px; }
+  .zwei .feld + .feld { margin-top:14px; }
+  @media (min-width:640px) { .zwei .feld + .feld { margin-top:0; } }
+  label { font-size:14px; font-weight:600; }
+  label .opt { font-weight:400; color:var(--muted); }
+  input, select, textarea { width:100%; border:1.5px solid var(--rule); border-radius:10px; background:var(--surface); padding:11px 12px; font-size:16px; transition:border-color .15s, box-shadow .15s; }
+  textarea { min-height:84px; resize:vertical; }
+  input:focus, select:focus, textarea:focus { outline:none; border-color:var(--kuli); box-shadow:0 0 0 3px var(--kuli-soft); }
+  input[aria-invalid="true"] { border-color:var(--err); }
+  .fehler-feld { color:var(--err); font-size:13px; min-height:0; }
+  .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .absenden { display:flex; flex-direction:column; gap:10px; margin-top:4px; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; background:var(--kuli); color:var(--on-kuli); border:2px solid var(--kuli); border-radius:10px; padding:14px 22px; font-weight:600; font-size:16px; cursor:pointer; text-decoration:none; transition:background .15s, border-color .15s; }
+  .btn:hover { background:var(--kuli-hover); border-color:var(--kuli-hover); }
+  .btn.rand { background:transparent; color:var(--kuli); }
+  .btn.rand:hover { background:var(--kuli-soft); }
+  .btn.gefahr { background:var(--err); border-color:var(--err); color:#fff; }
+  .btn[disabled] { opacity:.7; cursor:wait; }
+  .spinner { width:18px; height:18px; border:2.5px solid currentColor; border-right-color:transparent; border-radius:50%; animation:dreh .8s linear infinite; }
+  @keyframes dreh { to { transform:rotate(360deg); } }
+  .hinweis { font-size:13px; color:var(--graphite); margin:0; }
+  .meldung { border-radius:12px; padding:12px 14px; font-size:15px; background:var(--err-soft); color:var(--err); }
+  .meldung[hidden] { display:none; }
+
+  .erfolg-kopf { display:flex; align-items:center; gap:12px; margin:0 0 6px; }
+  .haken { width:44px; height:44px; border-radius:50%; background:var(--ok-soft); color:var(--ok); display:grid; place-items:center; flex:none; }
+  .haken svg { width:24px; height:24px; }
+  .ticket { display:flex; border:1px solid var(--rule); border-radius:14px; overflow:hidden; margin:18px 0 20px; }
+  .ticket .kachel { flex:none; width:96px; background:var(--kuli); color:var(--on-kuli); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:16px 6px; }
+  .ticket .kachel .wt, .ticket .kachel .mo { font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; opacity:.8; }
+  .ticket .kachel .nr { font-family:var(--serif); font-size:38px; font-weight:700; line-height:1.1; margin:4px 0 2px; }
+  .ticket .info { padding:16px 18px; display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .ticket .info strong { font-size:17px; }
+  .ticket .info .art-t { margin-top:10px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--graphite); }
+  .ticket .info a { word-break:break-all; font-weight:600; text-decoration:none; }
+  .ticket.durch .kachel { background:var(--muted); }
+  .ticket.durch strong, .ticket.durch .zeit-t { text-decoration:line-through; color:var(--graphite); }
+  .aktionen { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 18px; }
+  .kal { font-size:14px; color:var(--graphite); margin:0 0 22px; }
+  .kal a, .kal button { font-weight:600; }
+  .notiz { background:var(--note); border:1px solid var(--note-rule); border-top:4px dotted var(--note-rule); border-radius:12px; padding:16px 18px; }
+  .notiz b { font-family:var(--serif); color:var(--note-print); font-size:17px; display:block; margin-bottom:4px; }
+  .notiz p { margin:0; font-size:15px; }
+  .leer { text-align:center; padding:26px 10px; color:var(--graphite); }
+  footer { border-top:1px solid var(--rule); padding:22px 0 40px; font-size:14px; color:var(--graphite); }
+  footer a { color:var(--graphite); margin-right:18px; }
+  .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+</style>
+</head>
+<body>
+{{HEADER}}
+
+<main class="wrap layout">
+  <section class="info" aria-labelledby="titel">
+    <p class="eyebrow">Kennenlerngespräch</p>
+    <h1 id="titel">Lernen wir uns kennen.</h1>
+    <p class="lead">Wir schauen gemeinsam auf Ihre Telefonsituation, Sie hören den KI-Telefonassistenten live, und danach wissen Sie genau, was Einrichtung und Betrieb für Ihre Praxis bedeuten.</p>
+    <ul class="meta">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>30 Minuten</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Kostenlos und unverbindlich</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Mo–Fr, 9–17 Uhr</li>
+    </ul>
+    <div class="person">
+      <div class="avatar" aria-hidden="true">MM</div>
+      <div><b>Mathis C. Müller</b><p>Ich richte jeden Assistenten persönlich ein und bleibe danach Ihr direkter Ansprechpartner, aus dem Rhein-Sieg-Kreis.</p></div>
+    </div>
+    <ul class="trust">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Auftragsverarbeitung und Schweigepflicht nach § 203 StGB inklusive</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>30 Tage Pilot mit Geld-zurück für den ersten Monatsbeitrag</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Ihre Telefonnummer bleibt, kein Callcenter, keine Warteschleife</span></li>
+    </ul>
+  </section>
+
+  <section class="widget" aria-label="Termin buchen">
+    <ol class="steps" id="steps">
+      <li data-s="1" class="aktiv"><span>1</span>Gesprächsart</li>
+      <li data-s="2"><span>2</span>Termin</li>
+      <li data-s="3"><span>3</span>Angaben</li>
+    </ol>
+    <div class="sr" aria-live="polite" id="ansage"></div>
+
+    <!-- 1 Gesprächsart -->
+    <div class="panel" id="p1">
+      <h2 tabindex="-1">Wie möchten Sie sprechen?</h2>
+      <p class="sub">Sie können das später noch ändern.</p>
+      <div class="arten">
+        <button type="button" class="art" data-typ="telefon" aria-pressed="false">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+          <b>Telefon</b><small>Ich rufe Sie zur gewählten Zeit an.</small>
+        </button>
+        <button type="button" class="art" data-typ="video" aria-pressed="false">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4V8z"/></svg></span>
+          <b>Video</b><small>Google Meet im Browser, ohne Installation.</small>
+        </button>
+        <button type="button" class="art" data-typ="praxis" aria-pressed="false">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <b>In Ihrer Praxis</b><small>Im Rhein-Sieg-Kreis komme ich gern vorbei.</small>
+        </button>
+      </div>
+    </div>
+
+    <!-- 2 Termin -->
+    <div class="panel" id="p2" hidden>
+      <h2 tabindex="-1">Wählen Sie einen Termin</h2>
+      <div class="gewaehlt"><span>Gesprächsart: <b id="art-text">Telefon</b></span><button type="button" class="link" data-zu="1">Ändern</button></div>
+      <div id="slots"></div>
+      <p class="tz">Alle Zeiten in deutscher Zeit. Das Gespräch dauert 30 Minuten.</p>
+    </div>
+
+    <!-- 3 Angaben -->
+    <div class="panel" id="p3" hidden>
+      <h2 tabindex="-1">Fast geschafft</h2>
+      <div class="gewaehlt"><span id="wahl-text"></span><button type="button" class="link" data-zu="2">Ändern</button></div>
+      <form id="form" novalidate>
+        <div class="zwei name-zeile">
+          <div class="feld"><label for="f-anrede">Anrede <span class="opt">(optional)</span></label>
+            <select id="f-anrede" name="anrede" autocomplete="honorific-prefix"><option value="">–</option><option>Frau</option><option>Herr</option></select></div>
+          <div class="feld"><label for="f-name">Ihr Name</label><input id="f-name" name="name" autocomplete="name" placeholder="Vor- und Nachname" required><span class="fehler-feld" id="e-name"></span></div>
+        </div>
+        <div class="zwei">
+          <div class="feld"><label for="f-praxis">Name der Praxis</label><input id="f-praxis" name="praxis" autocomplete="organization" required><span class="fehler-feld" id="e-praxis"></span></div>
+          <div class="feld"><label for="f-ort">Ort der Praxis</label><input id="f-ort" name="ort" autocomplete="address-level2" placeholder="z. B. Hennef" required><span class="fehler-feld" id="e-ort"></span></div>
+        </div>
+        <div class="feld" id="feld-adresse" hidden><label for="f-adresse">Straße und Hausnummer der Praxis</label><input id="f-adresse" name="adresse" autocomplete="street-address"><span class="fehler-feld" id="e-adresse"></span></div>
+        <div class="zwei">
+          <div class="feld"><label for="f-email">E-Mail</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required><span class="fehler-feld" id="e-email"></span></div>
+          <div class="feld"><label for="f-telefon">Telefon</label><input id="f-telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel" required><span class="fehler-feld" id="e-telefon"></span></div>
+        </div>
+        <div class="zwei">
+          <div class="feld"><label for="f-team">Teamgröße <span class="opt">(optional)</span></label>
+            <select id="f-team" name="team"><option value="">Therapeut:innen</option><option>1–2</option><option>3–5</option><option>6–10</option><option>mehr als 10</option></select></div>
+          <div class="feld"><label for="f-software">Praxissoftware <span class="opt">(optional)</span></label>
+            <select id="f-software" name="software"><option value="">Bitte wählen</option><option>THEORG</option><option>Starke</option><option>Optica</option><option>MD Therapie</option><option>thevea</option><option>andere</option><option>weiß ich nicht</option></select></div>
+        </div>
+        <div class="feld"><label for="f-anliegen">Worum soll es gehen? <span class="opt">(optional)</span></label>
+          <textarea id="f-anliegen" name="anliegen" placeholder="z. B. Telefon während der Behandlungen, Anrufe nach Feierabend"></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="f-web">Website</label><input id="f-web" name="web" tabindex="-1" autocomplete="off"></div>
+        <div class="meldung" id="meldung" role="alert" hidden></div>
+        <div class="absenden">
+          <button class="btn" type="submit" id="senden">Termin buchen</button>
+          <p class="hinweis">Sie bekommen sofort eine Bestätigung mit Kalendereintrag per E-Mail. Ihre Angaben nutze ich nur für dieses Gespräch, mehr in der <a href="/datenschutz.html#termin">Datenschutzerklärung</a>.</p>
+        </div>
+      </form>
+    </div>
+
+    <!-- 4 Ergebnis / Verwalten -->
+    <div class="panel" id="p4" hidden></div>
+  </section>
+</main>
+
+<footer><div class="wrap"><a href="/">Startseite</a><a href="/impressum.html">Impressum</a><a href="/datenschutz.html">Datenschutz</a></div></footer>
+
+<script>
+(function () {
+  'use strict';
+  var API = '{{API}}';
+  var MAIL = 'mathis@emki-systems.de';
+  var TZ = 'Europe/Berlin';
+  var ARTEN = { telefon: 'Telefon', video: 'Video (Google Meet)', praxis: 'Besuch in Ihrer Praxis' };
+  var ARTEN_LANG = { telefon: 'Telefonat', video: 'Videogespräch über Google Meet', praxis: 'Besuch in Ihrer Praxis' };
+  var WT = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+  var WT_LANG = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+  var MON = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
+  var MON_LANG = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+
+  var q = new URLSearchParams(location.search);
+  var st = { typ: '', tage: [], seite: 0, tag: '', zeit: '', geladen: 0, hinweis: '', buchung: null, modus: 'neu', id: q.get('b') || '', token: q.get('t') || '' };
+  var $ = function (s, el) { return (el || document).querySelector(s); };
+  var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+  var konfiguriert = API.indexOf('https://') === 0;
+
+  // Vorbelegung aus Links in Briefen, z. B. /termin/?praxis=...&ort=...&q=brief
+  ['praxis', 'ort', 'name'].forEach(function (k) { if (q.get(k)) $('#f-' + k).value = q.get(k).slice(0, 120); });
+  var quelle = (q.get('q') || '').toLowerCase().replace(/[^a-z]/g, '').slice(0, 20);
+
+  function ansage(t) { $('#ansage').textContent = t; }
+
+  function zeige(n) {
+    ['p1', 'p2', 'p3', 'p4'].forEach(function (id, i) { $('#' + id).hidden = (i + 1) !== n; });
+    $$('#steps li').forEach(function (li) {
+      var s = +li.getAttribute('data-s');
+      li.classList.toggle('aktiv', s === n);
+      li.classList.toggle('fertig', s < n);
+    });
+    $('#steps').hidden = n === 4;
+    var h = $('#p' + n + ' h2');
+    if (h && st.geladen) h.focus({ preventScroll: true });
+    if (st.geladen && window.innerWidth < 960) $('.widget').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    st.geladen = 1;
+  }
+
+  function teile(iso) {
+    var p = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', weekday: 'short', hour12: false }).formatToParts(new Date(iso));
+    var g = function (k) { return (p.filter(function (x) { return x.type === k; })[0] || {}).value; };
+    var wt = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[g('weekday')];
+    return { j: +g('year'), m: +g('month'), t: +g('day'), h: g('hour') === '24' ? '00' : g('hour'), min: g('minute'), wt: wt };
+  }
+  function tagAusIso(d) { var a = d.split('-'); var x = new Date(Date.UTC(+a[0], +a[1] - 1, +a[2], 12)); return { j: +a[0], m: +a[1], t: +a[2], wt: x.getUTCDay() }; }
+
+  function api(params, body) {
+    var ctrl = 'AbortController' in window ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 20000);
+    var opt = { method: body ? 'POST' : 'GET', credentials: 'omit', redirect: 'follow', signal: ctrl ? ctrl.signal : undefined };
+    if (body) opt.body = JSON.stringify(body);
+    var url = API + (params ? '?' + new URLSearchParams(params).toString() : '');
+    return fetch(url, opt).then(function (r) { clearTimeout(timer); return r.json(); });
+  }
+
+  function stoerung(el) {
+    el.innerHTML = '<div class="leer"><p><b>Die Terminauswahl lädt gerade nicht.</b></p><p>Schreiben Sie mir kurz, wann es Ihnen passt. Ich melde mich am selben Werktag.</p>' +
+      '<p><a class="btn rand" href="mailto:' + MAIL + '?subject=' + encodeURIComponent('Kennenlerngespräch') + '">' + MAIL + '</a></p></div>';
+  }
+
+  /* ---------- Schritt 1 ---------- */
+  $$('.art').forEach(function (b) {
+    b.addEventListener('click', function () {
+      st.typ = b.getAttribute('data-typ');
+      $$('.art').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      $('#art-text').textContent = ARTEN[st.typ];
+      $('#feld-adresse').hidden = st.typ !== 'praxis';
+      $('#f-adresse').required = st.typ === 'praxis';
+      st.tag = ''; st.zeit = '';
+      zeige(2);
+      ladeSlots();
+    });
+  });
+  $$('[data-zu]').forEach(function (b) { b.addEventListener('click', function () { zeige(+b.getAttribute('data-zu')); }); });
+
+  /* ---------- Schritt 2 ---------- */
+  function ladeSlots() {
+    var el = $('#slots');
+    el.innerHTML = '<div class="skel" style="height:22px;width:40%;margin-bottom:12px"></div><div class="tage">' + '<div class="skel" style="height:78px"></div>'.repeat(5) +
+      '</div><div class="skel" style="height:18px;width:30%;margin-bottom:10px"></div><div class="zeiten">' + '<div class="skel" style="height:44px"></div>'.repeat(8) + '</div>';
+    if (!konfiguriert) { stoerung(el); return; }
+    var params = { a: 'slots', typ: st.typ };
+    if (st.modus === 'verschieben') { params.b = st.id; params.t = st.token; }
+    api(params).then(function (r) {
+      if (!r || !r.ok) throw new Error('slots');
+      st.tage = r.tage || []; st.seite = 0;
+      if (!st.tage.length) {
+        el.innerHTML = '<div class="leer"><p><b>In den nächsten Wochen ist leider nichts mehr frei.</b></p><p>Schreiben Sie mir, dann finden wir einen Termin.</p><p><a class="btn rand" href="mailto:' + MAIL + '">' + MAIL + '</a></p></div>';
+        return;
+      }
+      if (!st.tag || !st.tage.some(function (t) { return t.datum === st.tag; })) st.tag = st.tage[0].datum;
+      zeichneSlots();
+      ansage(st.tage.length + ' Tage mit freien Terminen geladen.');
+    }).catch(function () { stoerung(el); });
+  }
+
+  function zeichneSlots() {
+    var el = $('#slots');
+    var proSeite = window.innerWidth < 420 ? 4 : 5;
+    var idx = st.tage.findIndex(function (t) { return t.datum === st.tag; });
+    if (idx >= 0 && (idx < st.seite * proSeite || idx >= (st.seite + 1) * proSeite)) st.seite = Math.floor(idx / proSeite);
+    var seiten = Math.ceil(st.tage.length / proSeite);
+    var teil = st.tage.slice(st.seite * proSeite, (st.seite + 1) * proSeite);
+    var erster = tagAusIso(teil[0].datum), letzter = tagAusIso(teil[teil.length - 1].datum);
+    var monat = erster.m === letzter.m ? MON_LANG[erster.m - 1] + ' ' + erster.j : MON_LANG[erster.m - 1] + ' – ' + MON_LANG[letzter.m - 1] + ' ' + letzter.j;
+    var html = '<div class="tage-kopf"><strong>' + monat + '</strong><div class="pfeile">' +
+      '<button type="button" class="pfeil" id="zurueck" aria-label="Frühere Tage"' + (st.seite === 0 ? ' disabled' : '') + '><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>' +
+      '<button type="button" class="pfeil" id="weiter" aria-label="Spätere Tage"' + (st.seite >= seiten - 1 ? ' disabled' : '') + '><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>' +
+      '</div></div><div class="tage" style="grid-template-columns:repeat(' + proSeite + ',1fr)">';
+    teil.forEach(function (t) {
+      var d = tagAusIso(t.datum);
+      html += '<button type="button" class="tag" data-tag="' + t.datum + '" aria-pressed="' + (t.datum === st.tag) + '" aria-label="' + WT_LANG[d.wt] + ', ' + d.t + '. ' + MON_LANG[d.m - 1] + ', ' + t.slots.length + ' freie Zeiten">' +
+        '<span class="wt">' + WT[d.wt] + '</span><span class="nr">' + d.t + '</span><span class="mo">' + MON[d.m - 1] + '</span></button>';
+    });
+    html += '</div>';
+    var tag = st.tage.filter(function (t) { return t.datum === st.tag; })[0];
+    if (tag) {
+      var d = tagAusIso(tag.datum);
+      html += '<p class="zeiten-titel">' + WT_LANG[d.wt] + ', ' + d.t + '. ' + MON_LANG[d.m - 1] + '</p><div class="zeiten">';
+      tag.slots.forEach(function (z) { html += '<button type="button" class="zeit" data-zeit="' + z + '" aria-pressed="' + (z === st.zeit) + '">' + z + '</button>'; });
+      html += '</div>';
+    }
+    if (st.hinweis) { html = '<div class="meldung" role="alert" style="margin-bottom:14px">' + esc(st.hinweis) + '</div>' + html; st.hinweis = ''; }
+    el.innerHTML = html;
+    $('#zurueck').onclick = function () { st.seite--; st.tag = st.tage[st.seite * proSeite].datum; zeichneSlots(); };
+    $('#weiter').onclick = function () { st.seite++; st.tag = st.tage[st.seite * proSeite].datum; zeichneSlots(); };
+    $$('.tag', el).forEach(function (b) { b.onclick = function () { st.tag = b.getAttribute('data-tag'); st.zeit = ''; zeichneSlots(); var z = $('.zeit', el); if (z) z.focus(); }; });
+    $$('.zeit', el).forEach(function (b) { b.onclick = function () { st.zeit = b.getAttribute('data-zeit'); waehleZeit(); }; });
+  }
+
+  function wahlText() {
+    var d = tagAusIso(st.tag);
+    var a = st.zeit.split(':'), endeMin = +a[0] * 60 + +a[1] + 30;
+    var ende = ('0' + Math.floor(endeMin / 60)).slice(-2) + ':' + ('0' + endeMin % 60).slice(-2);
+    return WT[d.wt] + '., ' + d.t + '. ' + MON_LANG[d.m - 1] + ' · ' + st.zeit + '–' + ende + ' Uhr · ' + ARTEN[st.typ];
+  }
+
+  function waehleZeit() {
+    if (st.modus === 'verschieben') { verschieben(); return; }
+    $('#wahl-text').innerHTML = '<b>' + esc(wahlText()) + '</b>';
+    zeige(3);
+  }
+
+  /* ---------- Schritt 3 ---------- */
+  var startZeit = Date.now();
+  var regeln = {
+    name: function (v) { return v.trim().length >= 3 || 'Bitte geben Sie Ihren vollständigen Namen an.'; },
+    praxis: function (v) { return v.trim().length >= 2 || 'Bitte geben Sie den Namen Ihrer Praxis an.'; },
+    ort: function (v) { return v.trim().length >= 2 || 'Bitte geben Sie den Ort an.'; },
+    adresse: function (v) { return st.typ !== 'praxis' || v.trim().length >= 5 || 'Bitte geben Sie die Adresse an, damit ich Sie finde.'; },
+    email: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || 'Bitte prüfen Sie die E-Mail-Adresse.'; },
+    telefon: function (v) { return v.replace(/\D/g, '').length >= 6 || 'Bitte geben Sie eine Telefonnummer an.'; },
+  };
+  function pruefeFeld(k) {
+    var inp = $('#f-' + k), r = regeln[k](inp.value);
+    var ok = r === true;
+    inp.setAttribute('aria-invalid', String(!ok));
+    $('#e-' + k).textContent = ok ? '' : r;
+    return ok;
+  }
+  Object.keys(regeln).forEach(function (k) {
+    $('#f-' + k).addEventListener('blur', function () { if (this.value) pruefeFeld(k); });
+    $('#f-' + k).addEventListener('input', function () { if (this.getAttribute('aria-invalid') === 'true') pruefeFeld(k); });
+  });
+
+  $('#form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var fehler = Object.keys(regeln).filter(function (k) { return !pruefeFeld(k); });
+    if (fehler.length) { $('#f-' + fehler[0]).focus(); return; }
+    var knopf = $('#senden');
+    knopf.disabled = true;
+    knopf.innerHTML = '<span class="spinner" aria-hidden="true"></span>Termin wird gebucht …';
+    $('#meldung').hidden = true;
+    var daten = { a: 'buchen', typ: st.typ, datum: st.tag, zeit: st.zeit, quelle: quelle, ts: startZeit, hp: $('#f-web').value };
+    ['anrede', 'name', 'praxis', 'ort', 'adresse', 'email', 'telefon', 'team', 'software', 'anliegen'].forEach(function (k) { daten[k] = $('#f-' + k).value; });
+    api(null, daten).then(function (r) {
+      if (r && r.ok && r.buchung) { st.buchung = r.buchung; st.id = r.buchung.id; zeigeErfolg('neu'); return; }
+      if (r && r.vergeben) { st.hinweis = r.fehler; st.zeit = ''; zeige(2); ladeSlots(); return; }
+      fehlerMeldung((r && r.fehler) || 'Das hat leider nicht geklappt. Bitte versuchen Sie es noch einmal.');
+    }).catch(function () {
+      fehlerMeldung('Die Verbindung ist abgebrochen. Bitte versuchen Sie es noch einmal oder schreiben Sie an ' + MAIL + '.');
+    }).then(function () {
+      knopf.disabled = false; knopf.textContent = 'Termin buchen';
+    });
+  });
+  function fehlerMeldung(t) { var m = $('#meldung'); m.textContent = t; m.hidden = false; }
+
+  /* ---------- Ergebnis ---------- */
+  function ticketHtml(b, durch) {
+    var s = teile(b.start), e = teile(b.ende);
+    var detail = b.typ === 'video' ? (b.meet ? '<a href="' + esc(b.meet) + '" target="_blank" rel="noopener">Link zum Videogespräch</a>' : 'Den Link bekommen Sie per E-Mail.')
+      : b.typ === 'praxis' ? esc(b.adresse + ', ' + b.ort) : 'Ich rufe Sie unter ' + esc(b.telefon) + ' an.';
+    if (durch) detail = 'Entfällt';
+    return '<div class="ticket' + (durch ? ' durch' : '') + '"><div class="kachel"><span class="wt">' + WT[s.wt] + '</span><span class="nr">' + s.t + '</span><span class="mo">' + MON[s.m - 1] + '</span></div>' +
+      '<div class="info"><strong>' + WT_LANG[s.wt] + ', ' + s.t + '. ' + MON_LANG[s.m - 1] + ' ' + s.j + '</strong><span class="zeit-t">' + s.h + ':' + s.min + ' – ' + e.h + ':' + e.min + ' Uhr</span>' +
+      '<span class="art-t">' + ARTEN_LANG[b.typ] + '</span><span>' + detail + '</span></div></div>';
+  }
+
+  function icsDownload(b) {
+    var z = function (iso) { return new Date(iso).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); };
+    var ort = b.typ === 'video' ? (b.meet || 'Google Meet') : b.typ === 'praxis' ? b.adresse + ', ' + b.ort : 'Telefon';
+    var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//EMKI Systems//Terminbuchung//DE', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
+      'UID:' + b.id + '@emki-systems.de', 'DTSTAMP:' + z(new Date().toISOString()), 'DTSTART:' + z(b.start), 'DTEND:' + z(b.ende),
+      'SUMMARY:Kennenlerngespräch mit Mathis C. Müller (EMKI Systems)', 'LOCATION:' + ort.replace(/,/g, '\\,'),
+      'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:Kennenlerngespräch', 'TRIGGER:-PT15M', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+    a.download = 'termin-emki.ics';
+    document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+
+  function zeigeErfolg(art) {
+    var b = st.buchung;
+    var titel = art === 'verschoben' ? 'Ihr neuer Termin steht.' : 'Ihr Termin steht.';
+    var html = '<div class="erfolg-kopf"><span class="haken"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>' +
+      '<h2 tabindex="-1">' + titel + '</h2></div>' +
+      '<p class="sub">Die Bestätigung mit Kalendereinladung ist unterwegs an <b>' + esc(b.email) + '</b>. Falls sie nicht ankommt, sehen Sie bitte im Spam-Ordner nach.</p>' +
+      ticketHtml(b) +
+      '<div class="aktionen">' + (b.typ === 'video' && b.meet ? '<a class="btn" href="' + esc(b.meet) + '" target="_blank" rel="noopener">Meet-Link öffnen</a>' : '') +
+      '<a class="btn' + (b.typ === 'video' && b.meet ? ' rand' : '') + '" href="' + esc(b.links.google) + '" target="_blank" rel="noopener">In Google Kalender</a>' +
+      '<a class="btn rand" href="' + esc(b.links.outlook) + '" target="_blank" rel="noopener">In Outlook</a>' +
+      '<button type="button" class="btn rand" id="ics">Andere (.ics)</button></div>' +
+      '<div class="notiz"><b>Zur Vorbereitung</b><p>Eine grobe Schätzung reicht: Wie oft klingelt bei Ihnen das Telefon, wenn am Empfang niemand frei ist? Wenn Sie mögen, sprechen Sie schon vorab mit dem Assistenten unserer Vorführpraxis: <a href="/#demo">Live-Demo ausprobieren&nbsp;&rarr;</a></p></div>';
+    $('#p4').innerHTML = html;
+    $('#ics').onclick = function () { icsDownload(b); };
+    zeige(4);
+    ansage(titel);
+    if (history.replaceState) history.replaceState(null, '', location.pathname);
+  }
+
+  /* ---------- Verwalten (Link aus der Mail) ---------- */
+  function verwalten() {
+    st.modus = 'verwalten';
+    var p4 = $('#p4');
+    p4.innerHTML = '<div class="skel" style="height:30px;width:55%;margin-bottom:16px"></div><div class="skel" style="height:118px;margin-bottom:18px"></div><div class="skel" style="height:48px;width:60%"></div>';
+    zeige(4);
+    if (!konfiguriert) { stoerung(p4); return; }
+    api({ a: 'buchung', b: st.id, t: st.token }).then(function (r) {
+      if (!r || !r.ok) { p4.innerHTML = '<h2 tabindex="-1">Link nicht mehr gültig</h2><p class="sub">' + esc((r && r.fehler) || '') + ' Buchen Sie gern einen neuen Termin.</p><a class="btn" href="/termin/">Termin wählen</a>'; return; }
+      st.buchung = r.buchung; st.typ = r.buchung.typ;
+      zeichneVerwalten(q.get('aktion'));
+    }).catch(function () { stoerung(p4); });
+  }
+
+  function zeichneVerwalten(aktion) {
+    var b = st.buchung, p4 = $('#p4');
+    if (b.status !== 'bestätigt') {
+      p4.innerHTML = '<h2 tabindex="-1">Dieser Termin ist abgesagt.</h2>' + ticketHtml(b, true) + '<p class="sub">Möchten Sie einen neuen Termin?</p><a class="btn" href="/termin/">Neuen Termin wählen</a>';
+      return;
+    }
+    if (b.vorbei) {
+      p4.innerHTML = '<h2 tabindex="-1">Dieser Termin liegt in der Vergangenheit.</h2>' + ticketHtml(b) + '<a class="btn" href="/termin/">Neuen Termin wählen</a>';
+      return;
+    }
+    p4.innerHTML = '<h2 tabindex="-1">Ihr Termin</h2><p class="sub">Guten Tag ' + esc(b.name) + ', hier können Sie Ihren Termin verschieben oder absagen.</p>' + ticketHtml(b) +
+      '<div class="meldung" role="alert" hidden></div>' +
+      '<div class="aktionen" id="verw-aktionen"><button type="button" class="btn" id="b-versch">Termin verschieben</button><button type="button" class="btn rand" id="b-abs">Termin absagen</button></div>' +
+      '<div id="abs-frage" hidden><div class="notiz"><b>Wirklich absagen?</b><p>Der Termin wird gelöscht, und Sie bekommen eine Bestätigung per E-Mail.</p></div>' +
+      '<div class="aktionen" style="margin-top:14px"><button type="button" class="btn gefahr" id="b-abs-ja">Ja, Termin absagen</button><button type="button" class="btn rand" id="b-abs-nein">Termin behalten</button></div></div>';
+    $('#b-versch').onclick = starteVerschieben;
+    $('#b-abs').onclick = function () { $('#abs-frage').hidden = false; $('#verw-aktionen').hidden = true; $('#b-abs-ja').focus(); };
+    $('#b-abs-nein').onclick = function () { $('#abs-frage').hidden = true; $('#verw-aktionen').hidden = false; };
+    $('#b-abs-ja').onclick = absagen;
+    if (aktion === 'absagen') $('#b-abs').click();
+    if (aktion === 'verschieben') starteVerschieben();
+  }
+
+  function starteVerschieben() {
+    st.modus = 'verschieben';
+    st.tag = ''; st.zeit = '';
+    $('#art-text').textContent = ARTEN[st.typ];
+    $('#p2 h2').textContent = 'Neuen Termin wählen';
+    $('#p2 .gewaehlt').innerHTML = '<span>Bisher: <b>' + esc(kurzTermin(st.buchung)) + '</b> · ' + esc(ARTEN[st.typ]) + '</span><button type="button" class="link" id="zur-verw">Zurück</button>';
+    $('#zur-verw').onclick = function () { st.modus = 'verwalten'; zeichneVerwalten(); zeige(4); };
+    $('#steps').hidden = true;
+    zeige(2);
+    $('#steps').hidden = true;
+    ladeSlots();
+  }
+
+  function kurzTermin(b) { var s = teile(b.start); return WT[s.wt] + '., ' + s.t + '. ' + MON_LANG[s.m - 1] + ', ' + s.h + ':' + s.min + ' Uhr'; }
+
+  function verschieben() {
+    var el = $('#slots');
+    $$('.zeit', el).forEach(function (x) { x.disabled = true; });
+    var gewaehlt = $('.zeit[data-zeit="' + st.zeit + '"]', el);
+    if (gewaehlt) gewaehlt.innerHTML = '<span class="spinner" aria-hidden="true" style="width:14px;height:14px;display:inline-block;vertical-align:-2px"></span>';
+    api(null, { a: 'verschieben', id: st.id, t: st.token, datum: st.tag, zeit: st.zeit }).then(function (r) {
+      if (r && r.ok && r.buchung) { st.buchung = r.buchung; zeigeErfolg('verschoben'); return; }
+      st.hinweis = (r && r.fehler) || 'Das hat leider nicht geklappt. Bitte versuchen Sie es noch einmal.';
+      st.zeit = '';
+      if (r && r.vergeben) ladeSlots(); else zeichneSlots();
+    }).catch(function () { st.hinweis = 'Die Verbindung ist abgebrochen. Bitte versuchen Sie es noch einmal.'; st.zeit = ''; zeichneSlots(); });
+  }
+
+  function absagen() {
+    var k = $('#b-abs-ja');
+    k.disabled = true; k.innerHTML = '<span class="spinner" aria-hidden="true"></span>Wird abgesagt …';
+    api(null, { a: 'absagen', id: st.id, t: st.token }).then(function (r) {
+      if (!r || !r.ok) throw new Error();
+      st.buchung = r.buchung;
+      $('#p4').innerHTML = '<div class="erfolg-kopf"><span class="haken"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><h2 tabindex="-1">Ihr Termin ist abgesagt.</h2></div>' +
+        '<p class="sub">Sie bekommen gleich eine Bestätigung per E-Mail. Wenn Sie zu einem anderen Zeitpunkt sprechen möchten, wählen Sie einfach einen neuen Termin.</p>' +
+        ticketHtml(st.buchung, true) + '<a class="btn" href="/termin/">Neuen Termin wählen</a>';
+      $('#p4 h2').focus();
+      if (history.replaceState) history.replaceState(null, '', location.pathname);
+    }).catch(function () {
+      k.disabled = false; k.textContent = 'Ja, Termin absagen';
+      var m = $('#p4 .meldung'); m.textContent = 'Das hat leider nicht geklappt. Bitte versuchen Sie es noch einmal oder schreiben Sie an ' + MAIL + '.'; m.hidden = false;
+    });
+  }
+
+  var breite = window.innerWidth;
+  window.addEventListener('resize', function () {
+    if (Math.abs(window.innerWidth - breite) < 40) return;
+    breite = window.innerWidth;
+    if (!$('#p2').hidden && st.tage.length) zeichneSlots();
+  });
+
+  if (st.id && st.token) verwalten(); else zeige(1);
+})();
+</script>
+</body>
+</html>
